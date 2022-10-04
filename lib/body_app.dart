@@ -42,7 +42,26 @@ class _BodyAppState extends State<BodyApp> {
                   ),
                 ],
               ),
-              TextField(),
+              const TextField(
+                textAlign: TextAlign.center,
+                cursorColor: Colors.white,
+                style: TextStyle(                  
+                  color: Colors.white,
+                  fontSize: 20.0,
+                ),
+                decoration: InputDecoration(
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.green,
+                    ),                    
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.green,
+                    ),
+                  ),
+                ),
+              ),
               const SizedBox(
                 height: 30,
               ),
@@ -54,7 +73,26 @@ class _BodyAppState extends State<BodyApp> {
                   ),
                 ],
               ),
-              TextField(),
+              const TextField(
+                cursorColor: Colors.white,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20.0,
+                ),
+                decoration: InputDecoration(
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.green
+                    ),
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.green,
+                    ),
+                  ),
+                ),
+              ),
               const SizedBox(height: 40),
               TextButton(
                 onPressed: () {},
