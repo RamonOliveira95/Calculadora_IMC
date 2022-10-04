@@ -8,6 +8,10 @@ class BodyApp extends StatefulWidget {
 }
 
 class _BodyAppState extends State<BodyApp> {
+  TextEditingController controllerPeso = TextEditingController();
+  TextEditingController controllerAltura = TextEditingController();
+  num resultadoImc = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,23 +41,28 @@ class _BodyAppState extends State<BodyApp> {
               Row(
                 children: const [
                   Text(
-                    "Peso (Kg)",
-                    style: TextStyle(color: Colors.white, fontSize: 16.0),
+                    "Altura (cm)",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16.0,
+                    ),
                   ),
                 ],
               ),
-              const TextField(
-                textAlign: TextAlign.center,
+              TextField(
+                keyboardType: TextInputType.number,
+                controller: controllerAltura,
                 cursorColor: Colors.white,
-                style: TextStyle(                  
+                textAlign: TextAlign.center,
+                style: const TextStyle(
                   color: Colors.white,
                   fontSize: 20.0,
                 ),
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
+                  hintText: "Digite a sua altura",
+                  hintStyle: TextStyle(color: Colors.grey, fontSize: 14),
                   enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.green,
-                    ),                    
+                    borderSide: BorderSide(color: Colors.green),
                   ),
                   focusedBorder: UnderlineInputBorder(
                     borderSide: BorderSide(
@@ -68,22 +77,32 @@ class _BodyAppState extends State<BodyApp> {
               Row(
                 children: const [
                   Text(
-                    "Altura (cm)",
-                    style: TextStyle(color: Colors.white),
+                    "Peso (Kg)",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16.0,
+                    ),
                   ),
                 ],
               ),
-              const TextField(
-                cursorColor: Colors.white,
+              TextField(
+                keyboardType: TextInputType.number,
+                controller: controllerPeso,
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                cursorColor: Colors.white,
+                style: const TextStyle(
                   color: Colors.white,
                   fontSize: 20.0,
                 ),
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
+                  hintText: "Digite o seu peso",
+                  hintStyle: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 14,
+                  ),
                   enabledBorder: UnderlineInputBorder(
                     borderSide: BorderSide(
-                      color: Colors.green
+                      color: Colors.green,
                     ),
                   ),
                   focusedBorder: UnderlineInputBorder(
@@ -93,9 +112,22 @@ class _BodyAppState extends State<BodyApp> {
                   ),
                 ),
               ),
+              const SizedBox(
+                height: 30,
+              ),
               const SizedBox(height: 40),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  setState(
+                    () {
+                      num numAux = (num.parse(controllerPeso.text) /
+                          (num.parse(controllerAltura.text) *
+                              num.parse(controllerAltura.text)));
+                      numAux = numAux * 10000;
+                      resultadoImc = numAux;
+                    },
+                  );
+                },
                 child: Container(
                   height: 40,
                   width: 280,
@@ -111,11 +143,67 @@ class _BodyAppState extends State<BodyApp> {
                       "Calcular",
                       style: TextStyle(
                         color: Colors.black,
-                        fontSize: 16),
+                        fontSize: 16,
+                      ),
                     ),
                   ),
                 ),
-              )
+              ),
+              const SizedBox(height: 30),
+              if(resultadoImc < 18.5)
+              Column(
+                children: [
+                  Text(
+                    "(IMC ${resultadoImc.toStringAsFixed(2)})",
+                    style: const TextStyle(
+                      color: Colors.green,
+                      fontSize: 20,
+                    ),
+                  ),
+                  const Text(
+                    "Você está abaixo do peso",
+                    style: TextStyle(
+                      color: Colors.green
+                    ),
+                  )
+                ],
+              ),
+              if(resultadoImc >= 18.5 && resultadoImc < 25)
+              Column(
+                children: [
+                  Text(
+                    "(IMC ${resultadoImc.toStringAsFixed(2)})",
+                    style: const TextStyle(
+                      color: Colors.green,
+                      fontSize: 20,
+                    ),
+                  ),
+                  const Text(
+                    "Você está com o peso normal",
+                    style: TextStyle(
+                      color: Colors.green
+                    ),
+                  )
+                ],
+              ),
+              if(resultadoImc >= 25)
+              Column(
+                children: [
+                  Text(
+                    "(IMC ${resultadoImc.toStringAsFixed(2)})",
+                    style: const TextStyle(
+                      color: Colors.green,
+                      fontSize: 20,
+                    ),
+                  ),
+                  const Text(
+                    "Você está com sobrepeso",
+                    style: TextStyle(
+                      color: Colors.green
+                    ),
+                  )
+                ],
+              ),
             ],
           ),
         ),

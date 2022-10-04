@@ -46,7 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 height: 30,
                 width: 100,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(40.0)
+                  borderRadius: BorderRadius.circular(40.0),
                 ),
                 child: TextButton(
                   onPressed: () {},
