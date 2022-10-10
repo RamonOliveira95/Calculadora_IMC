@@ -28,6 +28,7 @@ class _BodyAppState extends State<BodyApp> {
           width: 280,
           height: double.infinity,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               const SizedBox(
                 height: 50,
@@ -248,6 +249,7 @@ class _BodyAppState extends State<BodyApp> {
                   ),
                 ),
               ),
+              const SizedBox(height: 30),
             ],
           ),
         ),
